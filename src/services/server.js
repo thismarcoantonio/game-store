@@ -20,7 +20,7 @@ export function makeServer() {
     },
     routes() {
       this.namespace = "api";
-
+      this.timing = 3000;
       this.resource("games");
     },
     seeds(server) {
