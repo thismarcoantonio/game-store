@@ -11,7 +11,7 @@ function App() {
       location={location}
     >
       <Header />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-6 pb-20">
         <Outlet />
       </div>
     </Router>

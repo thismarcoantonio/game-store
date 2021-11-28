@@ -12,6 +12,12 @@ export function makeServer() {
         },
         description() {
           return faker.commerce.productDescription();
+        },
+        image() {
+          return `${faker.image.nature()}?random=${Math.round(Math.random() * 1000)}`;
+        },
+        price() {
+          return faker.commerce.price();
         }
       }),
     },
@@ -20,12 +26,12 @@ export function makeServer() {
     },
     routes() {
       this.namespace = "api";
-      this.timing = 3000;
+      this.timing = 1000;
       this.resource("games");
     },
     seeds(server) {
       server.loadFixtures();
-      server.createList("game", 10);
+      server.createList("game", 40);
     },
   };
 
