@@ -1,4 +1,5 @@
 import { useCart } from "contexts/Cart";
+import { dataLayer } from "utils/analytics";
 import { Item } from "./Item";
 
 export function Cart() {
@@ -7,6 +8,29 @@ export function Cart() {
 
   const getFinalPrice = () => {
     return cart.reduce((total, { price }) => total + Number(price), 0).toFixed(2);
+  };
+
+  const handlePurchase = () => {
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "purchase",
+      ecommerce: {
+        transaction_id: "T12345",
+        affiliation: "Online Store",
+        value: getFinalPrice(),
+        tax: getFinalPrice() * 0.10,
+        shipping: 5.99,
+        currency: "USD",
+        items: cart.map((item) => ({
+          item_name: item.title,
+          item_id: item.id,
+          price: item.price,
+          item_brand: "EA",
+          item_category: "Games",
+          quantity: 1
+        }))
+      }
+    });
   };
 
   return (
@@ -35,7 +59,7 @@ export function Cart() {
               <li className="font-mono font-bold flex justify-between">Total <span>${getFinalPrice()}</span></li>
             </ul>
           </div>
-          <button className="mt-4 shadow-lg text-white font-bold bg-green-500 rounded-sm hover:bg-green-600 p-3 w-full">
+          <button onClick={handlePurchase} className="mt-4 shadow-lg text-white font-bold bg-green-500 rounded-sm hover:bg-green-600 p-3 w-full">
             Finish purchase
           </button>
         </div>

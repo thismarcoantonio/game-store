@@ -6,8 +6,8 @@ export function Wrapper({ children }) {
   const location = useLocation();
 
   useEffect(() => {
-    dataLayer.push("pageview", location.current.pathname);
-  }, [location]);
+    dataLayer.push({ event: "pageview" });
+  }, [location.current.pathname]);
 
   return (
     <div className="container mx-auto p-6 pb-20">

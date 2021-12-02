@@ -18,6 +18,7 @@ export function Games() {
             title={game.name}
             onClick={addItem}
             image={game.image}
+            price={game.price}
             description={game.description}
           />
         </li>
