@@ -1,5 +1,6 @@
 import { ReactLocation, Router, Outlet } from "react-location";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Wrapper } from "components/Wrapper";
 import { Header } from "./components/Header";
 import { routes } from "./config/routes";
 import { CartProvider } from "./contexts/Cart";
@@ -13,9 +14,9 @@ function App() {
       <Router routes={routes} location={location}>
         <CartProvider>
           <Header />
-          <div className="container mx-auto p-6 pb-20">
+          <Wrapper>
             <Outlet />
-          </div>
+          </Wrapper>
         </CartProvider>
       </Router>
     </QueryClientProvider>
