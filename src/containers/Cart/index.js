@@ -1,6 +1,7 @@
 import { useCart } from "contexts/Cart";
 import { dataLayer } from "utils/analytics";
 import { Item } from "./Item";
+import faker from "faker";
 
 export function Cart() {
   const { cart } = useCart();
@@ -15,7 +16,7 @@ export function Cart() {
     dataLayer.push({
       event: "purchase",
       ecommerce: {
-        transaction_id: "T12345",
+        transaction_id: faker.datatype.uuid(),
         affiliation: "Online Store",
         value: getFinalPrice(),
         tax: getFinalPrice() * 0.10,
