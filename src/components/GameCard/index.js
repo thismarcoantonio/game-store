@@ -2,18 +2,21 @@ import { dataLayer } from "utils/analytics";
 
 export function GameCard({ id, title, description, image, price, onClick }) {
   const handleAddToCart = (id) => () => {
+    dataLayer.push({ ecommerce: null });
     dataLayer.push({
       event: "add_to_cart",
-      currency: "USD",
-      value: Number(price).toFixed(2),
-      items: [{
-        price,
-        item_id: id,
-        item_name: title,
-        item_brand: "EA",
-        item_category: "Games",
-        quantity: 1
-      }]
+      ecommerce: {
+        currency: "USD",
+        value: Number(price).toFixed(2),
+        items: [{
+          price,
+          item_name: title,
+          item_id: id,
+          item_brand: "EA",
+          item_category: "Games",
+          quantity: 1
+        }]
+      }
     });
 
     onClick(id);

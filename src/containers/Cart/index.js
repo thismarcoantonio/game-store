@@ -11,22 +11,25 @@ export function Cart() {
   };
 
   const handlePurchase = () => {
+    dataLayer.push({ ecommerce: null });
     dataLayer.push({
       event: "purchase",
-      transaction_id: "T12345",
-      affiliation: "Online Store",
-      value: getFinalPrice(),
-      tax: getFinalPrice() * 0.10,
-      shipping: 5.99,
-      currency: "USD",
-      items: cart.map((item) => ({
-        item_name: item.title,
-        item_id: item.id,
-        price: item.price,
-        item_brand: "EA",
-        item_category: "Games",
-        quantity: 1
-      }))
+      ecommerce: {
+        transaction_id: "T12345",
+        affiliation: "Online Store",
+        value: getFinalPrice(),
+        tax: getFinalPrice() * 0.10,
+        shipping: 5.99,
+        currency: "USD",
+        items: cart.map((item) => ({
+          item_name: item.title,
+          item_id: item.id,
+          price: item.price,
+          item_brand: "EA",
+          item_category: "Games",
+          quantity: 1
+        }))
+      }
     });
   };
 
