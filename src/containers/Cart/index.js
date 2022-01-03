@@ -22,7 +22,7 @@ export function Cart() {
         shipping: 5.99,
         currency: "USD",
         items: cart.map((item) => ({
-          item_name: item.title,
+          item_name: item.name,
           item_id: item.id,
           price: item.price,
           item_brand: "EA",
