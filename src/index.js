@@ -3,11 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { config } from "./config";
 
-if (config.env === "development") {
-  require("./services/server").makeServer();
-}
+require("./services/server").makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
