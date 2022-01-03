@@ -7,7 +7,7 @@ export function Cart() {
   const hasItems = !!cart.length;
 
   const getFinalPrice = () => {
-    return cart.reduce((total, { price }) => total + Number(price), 0).toFixed(2);
+    return cart.reduce((total, { price }) => total + Number(price), 0);
   };
 
   const handlePurchase = () => {
@@ -24,7 +24,7 @@ export function Cart() {
         items: cart.map((item) => ({
           item_name: item.name,
           item_id: item.id,
-          price: item.price,
+          price: Number(item.price),
           item_brand: "EA",
           item_category: "Games",
           quantity: 1
